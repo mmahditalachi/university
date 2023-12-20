@@ -1,4 +1,4 @@
-package com.example.university.employee;
+package com.example.university.model;
 
 public enum Gender {
     MALE,

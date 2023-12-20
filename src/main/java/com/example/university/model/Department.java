@@ -1,6 +1,6 @@
-package com.example.university.employee;
+package com.example.university.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.util.Set;
 

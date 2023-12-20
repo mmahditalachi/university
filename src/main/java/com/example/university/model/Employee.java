@@ -1,14 +1,15 @@
-package com.example.university.employee;
+package com.example.university.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity
+@Table(name="employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;    
     private String firstName;
     private String lastName;
     private String jobTitle;
@@ -27,7 +28,8 @@ public class Employee {
     )
     private Set<Department> departments;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "employee")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "employee_id")
     private Set<Address> addresses;
 
     public Employee() {
@@ -105,6 +107,20 @@ public class Employee {
 
     public void setDepartments(Set<Department> departments) {
         this.departments = departments;
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void addAddress(Address address) {
+        this.addresses.add(address);
+        address.setEmployee(this);
+    }
+
+    public void removeAddress(Address address) {
+        this.addresses.remove(address);
+        address.setEmployee(null);
     }
 }
 

@@ -1,10 +1,7 @@
-package com.example.university.employee;
+package com.example.university.model;
 
+import jakarta.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 public class Address {
@@ -14,6 +11,16 @@ public class Address {
     private String title;
     private String description;
     private String phoneNumber;    
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    // Constructors, getters, setters...
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
     // Getters and setters
     public Long getId() {
