@@ -1,3 +1,4 @@
+package com.example.university.repository;
 // package com.example.university.employee;
 
 // import org.springframework.data.jpa.repository.JpaRepository;

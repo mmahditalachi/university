@@ -2,8 +2,10 @@ package com.example.university.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.university.entity.Employee;
 import com.example.university.exceptions.EmployeeNotFoundException;
-import com.example.university.model.Employee;
+import com.example.university.model.CreateEmployeeModel;
 import com.example.university.service.IEmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +39,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> createEmployee(@RequestBody CreateEmployeeModel employee) {
         Employee createdEmployee = employeeService.createEmployee(employee);
         return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
     }

@@ -3,10 +3,11 @@ package com.example.university.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.university.employee.EmployeeRepository;
+import com.example.university.entity.Address;
+import com.example.university.entity.Employee;
 import com.example.university.exceptions.EmployeeNotFoundException;
-import com.example.university.model.Employee;
-import com.example.university.model.Address;
+import com.example.university.model.CreateEmployeeModel;
+import com.example.university.repository.EmployeeRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +34,10 @@ public class EmployeeService  implements IEmployeeService {
     }
 
     @Override
-    public Employee createEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public Employee createEmployee(CreateEmployeeModel model) {
+        Employee emp = new Employee(model.getFirstName(), model.getLastName(),
+         model.getJobTitle(), model.getAge(), model.getGender(), model.getImage());         
+        return employeeRepository.save(emp);
     }
 
     @Override
