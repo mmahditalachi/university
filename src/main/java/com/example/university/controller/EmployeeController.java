@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.university.entity.Employee;
 import com.example.university.exceptions.EmployeeNotFoundException;
 import com.example.university.model.CreateEmployeeModel;
+import com.example.university.model.UpdateEmployeeModel;
 import com.example.university.service.IEmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class EmployeeController {
     @PutMapping("/{employeeId}")
     public ResponseEntity<Employee> updateEmployee(
             @PathVariable Long employeeId,
-            @RequestBody Employee updatedEmployee) {
+            @RequestBody UpdateEmployeeModel updatedEmployee) {
         try {
             employeeService.updateEmployee(employeeId, updatedEmployee);
             return new ResponseEntity<>(HttpStatus.OK);

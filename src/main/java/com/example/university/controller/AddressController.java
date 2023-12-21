@@ -2,6 +2,7 @@ package com.example.university.controller;
 
 import com.example.university.entity.*;
 import com.example.university.model.CreateAddressModel;
+import com.example.university.model.UpdateAddressModel;
 import com.example.university.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,7 +51,7 @@ public class AddressController {
     @PutMapping("/{addressId}")
     public ResponseEntity<Void> updateAddress(
             @PathVariable Long addressId,
-            @RequestBody Address updatedAddress) {
+            @RequestBody UpdateAddressModel updatedAddress) {
         addressService.updateAddress(addressId, updatedAddress);
         return new ResponseEntity<>(HttpStatus.OK);
     }

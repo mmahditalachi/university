@@ -13,6 +13,7 @@ import com.example.university.entity.Employee;
 import com.example.university.exceptions.AddressNotFoundException;
 import com.example.university.exceptions.EmployeeNotFoundException;
 import com.example.university.model.CreateAddressModel;
+import com.example.university.model.UpdateAddressModel;
 
 @Service
 public class AddressService {
@@ -47,7 +48,7 @@ public class AddressService {
         }
     }
 
-    public void updateAddress(Long id, Address updatedAddress) {
+    public void updateAddress(Long id, UpdateAddressModel updatedAddress) {
         Optional<Address> optionalAddress = addressRepository.findById(id);
         if (!optionalAddress.isPresent()) {
             throw new AddressNotFoundException("Address with ID" + id + " not found");
