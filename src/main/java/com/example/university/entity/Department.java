@@ -2,7 +2,9 @@ package com.example.university.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Department {
@@ -11,11 +13,11 @@ public class Department {
     private Long id;
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "departments")
     private Set<Employee> employees;
 
-      // Getters and setters
-      public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -32,5 +34,9 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Employee> getEmployees(){
+        return employees;
     }
 }

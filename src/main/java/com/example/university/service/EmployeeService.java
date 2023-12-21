@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.university.entity.Employee;
-import com.example.university.exceptions.EmployeeNotFoundException;
+import com.example.university.exceptions.NotFoundException;
 import com.example.university.model.CreateEmployeeModel;
 import com.example.university.model.UpdateEmployeeModel;
 import com.example.university.repository.EmployeeRepository;
@@ -43,7 +43,7 @@ public class EmployeeService  implements IEmployeeService {
     public Employee updateEmployee(Long id, UpdateEmployeeModel updatedEmployee) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
         if (!optionalEmployee.isPresent()) {
-            throw new EmployeeNotFoundException("Employee with ID " + id + " not found");
+            throw new NotFoundException("Employee with ID " + id + " not found");
         }
         Employee existingEmployee = optionalEmployee.get();
 

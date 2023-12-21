@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import com.example.university.entity.Address;
 import com.example.university.entity.Employee;
-import com.example.university.exceptions.AddressNotFoundException;
-import com.example.university.exceptions.EmployeeNotFoundException;
+import com.example.university.exceptions.NotFoundException;
 import com.example.university.model.CreateAddressModel;
 import com.example.university.model.UpdateAddressModel;
 
@@ -38,7 +37,7 @@ public class AddressService {
     public Address createAddress(Long employeeId, CreateAddressModel model) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (!optionalEmployee.isPresent()) {
-            throw new EmployeeNotFoundException("Employee with ID " + employeeId + " not found");
+            throw new NotFoundException("Employee with ID " + employeeId + " not found");
         } else {
             Address address = new Address(model.getTitle(), model.getDescription(),
                  model.getPhoneNumber(), optionalEmployee.get());
@@ -51,7 +50,7 @@ public class AddressService {
     public void updateAddress(Long id, UpdateAddressModel updatedAddress) {
         Optional<Address> optionalAddress = addressRepository.findById(id);
         if (!optionalAddress.isPresent()) {
-            throw new AddressNotFoundException("Address with ID" + id + " not found");
+            throw new NotFoundException("Address with ID" + id + " not found");
         }
         Address existingAddress = optionalAddress.get();
         existingAddress.setTitle(updatedAddress.getTitle());

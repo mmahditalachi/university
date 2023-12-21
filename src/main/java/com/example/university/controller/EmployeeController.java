@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.university.entity.Employee;
-import com.example.university.exceptions.EmployeeNotFoundException;
 import com.example.university.model.CreateEmployeeModel;
 import com.example.university.model.UpdateEmployeeModel;
 import com.example.university.service.IEmployeeService;
@@ -31,12 +30,8 @@ public class EmployeeController {
 
     @GetMapping("/{employeeId}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId) {
-        try {
-            Employee employee = employeeService.getEmployeeById(employeeId);
-            return new ResponseEntity<>(employee, HttpStatus.OK);
-        } catch (EmployeeNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @PostMapping
@@ -49,21 +44,13 @@ public class EmployeeController {
     public ResponseEntity<Employee> updateEmployee(
             @PathVariable Long employeeId,
             @RequestBody UpdateEmployeeModel updatedEmployee) {
-        try {
             employeeService.updateEmployee(employeeId, updatedEmployee);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (EmployeeNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @DeleteMapping("/{employeeId}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long employeeId) {
-        try {
             employeeService.deleteEmployee(employeeId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (EmployeeNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 }

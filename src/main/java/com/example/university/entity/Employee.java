@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="employee")
 public class Employee {
@@ -19,7 +21,7 @@ public class Employee {
     private Gender gender;
 
     private String image; 
-
+    
     @ManyToMany
     @JoinTable(
             name = "employee_department",

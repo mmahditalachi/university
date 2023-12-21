@@ -1,8 +1,8 @@
 package com.example.university.repository;
-// package com.example.university.employee;
 
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import com.example.university.model.Department;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.university.entity.Department;
 
-// public interface DepartmentRepository extends JpaRepository<Department, Long> {
-// }
+
+public interface DepartmentRepository extends JpaRepository<Department, Long> {
+}
