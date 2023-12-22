@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name="employee")
 public class Employee {
