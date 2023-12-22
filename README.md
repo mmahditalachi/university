@@ -17,9 +17,9 @@ Create a MySQL database with the name `springbootdb` and add the credentials to 
 The default ones are :
 
 ```
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/university
-spring.datasource.username=root
-spring.datasource.password=my-secret-pw
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/(database name)
+spring.datasource.username=(username)
+spring.datasource.password=(password)
 spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
 spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
